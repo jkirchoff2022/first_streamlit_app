@@ -1,5 +1,6 @@
 import pandas as pd
 import streamlit
+import streamlit as st
 import requests
 import snowflake.connector
 
@@ -49,7 +50,7 @@ fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
 # display normalized view
 streamlit.dataframe(fruityvice_normalized)
 
-conn = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+conn = snowflake.connector.connect(**st.secrets["snowflake"])
 my_cur = pd.read_sql("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION();", conn)
 
 streamlit.text("Hello from Snowflake:")
