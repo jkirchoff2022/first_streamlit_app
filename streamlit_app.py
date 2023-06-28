@@ -31,12 +31,8 @@ streamlit.header('Fruityvice Fruit Advice!')
 
 # create a repeatable code block
 def get_fruityvice_data(this_fruit_choice):
-    fruityvice_response = requests.get('https://fruityvice.com/api/fruit/' + this_fruit_choice)
-    if not fruityvice_response:
-        fruityvice_response = '{}'
+    fruityvice_response = requests.get('https://fruityvice.com/api/fruit/' + this_fruit_choice, '{}')
     fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
-    if not fruityvice_normalized:
-        fruityvice_normalized = '{}'
     return fruityvice_normalized
 
 
